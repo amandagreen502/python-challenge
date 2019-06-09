@@ -24,24 +24,32 @@ with open(csvpath, newline='') as csvfile:
  #Total Number of Months Calculation
         total_months += 1
 #Profit/Losses Total Revenue Calculation
-        tot_revenue += int(row['Profit/Losses']) 
+        tot_revenue += float(row[1]) 
 
 #Calulate average change 
-prev_change = int(row["Profit/Losses"]) - prev_revenue
-prev_revenue = int(row["Profit/Losses"])
+rev_change = int(row[1])- prev_revenue
+prev_change = int(row[1]) - prev_revenue
+prev_revenue = int(row[1])
 revenue_change_list = revenue_change_list + [rev_change]
-month_of_change = month_of_change + [row["Date"]]
-
+month_of_change = month_of_change + [row[0]]
 
 # The greatest decrease in losses (date and amount) over the entire period
 
-biggest_decr = np.min(int(row['Profit/Losses'])) 
+biggest_decr = nb.min(int(row[1])) 
 
 #The greatest increase in profits (date and amount) over the entire period
 
-biggest_decr = np.max(int(row['Profit/Losses']))
+biggest_incr = nb.max(int(row[1]))
       
+#print(rev_change_list)
+rev_avg = sum(revenue_change_list)/len(revenue_change_list)
 
+
+print('Average Change in Revenue: $ ' + str(rev_avg))
+print("Total Months: " + str(total_months))
+print("Total Revenue: $ " + str(tot_revenue))
+print(biggest_incr)
+print(biggest_decr)
 
 
 file_output = "results.txt"
