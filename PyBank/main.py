@@ -10,7 +10,9 @@ tot_revenue = 0
 prev_revenue = 0
 month_of_change = []
 revenue_change_list = []
-biggest_decr = 0
+
+revenue_list=[]
+
 
 # read csv 
 with open(csvpath, newline='') as csvfile:
@@ -25,9 +27,10 @@ with open(csvpath, newline='') as csvfile:
         total_months += 1
 #Profit/Losses Total Revenue Calculation
         tot_revenue += float(row[1]) 
+        revenue_list.append(row[1])
 
 #Calulate average change 
-rev_change = int(row[1])- prev_revenue
+rev_change = int(row[1]) - prev_revenue
 prev_change = int(row[1]) - prev_revenue
 prev_revenue = int(row[1])
 revenue_change_list = revenue_change_list + [rev_change]
@@ -35,11 +38,12 @@ month_of_change = month_of_change + [row[0]]
 
 # The greatest decrease in losses (date and amount) over the entire period
 
-biggest_decr = nb.min(int(row[1])) 
+#biggest_decr = nb.min(int(row[1])) 
+biggest_decr = min(revenue_list) 
 
 #The greatest increase in profits (date and amount) over the entire period
 
-biggest_incr = nb.max(int(row[1]))
+biggest_incr = max(revenue_list)
       
 #print(rev_change_list)
 rev_avg = sum(revenue_change_list)/len(revenue_change_list)
@@ -50,6 +54,3 @@ print("Total Months: " + str(total_months))
 print("Total Revenue: $ " + str(tot_revenue))
 print(biggest_incr)
 print(biggest_decr)
-
-
-file_output = "results.txt"
