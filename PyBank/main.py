@@ -7,9 +7,6 @@ csvpath = os.path.join('budget_data.csv')
 # Define Variables
 total_months = 0
 tot_revenue = 0
-prev_revenue = 0
-month_of_change = []
-revenue_change_list = []
 
 revenue_list=[]
 
@@ -30,11 +27,6 @@ with open(csvpath, newline='') as csvfile:
         revenue_list.append(row[1])
 
 #Calulate average change 
-#rev_change = int(row[1]) - prev_revenue
-#prev_change = int(row[1]) - prev_revenue
-#prev_revenue = int(row[1])
-#revenue_change_list = revenue_change_list + [rev_change]
-#month_of_change = month_of_change + [row[0]]
 
 rev_avg = float(round(tot_revenue/total_months,2))
 
@@ -47,11 +39,10 @@ biggest_decr = min(revenue_list)
 biggest_incr = max(revenue_list)
       
 #print(rev_change_list)
-#rev_avg = sum(revenue_change_list)/len(revenue_change_list)
-
-
-print('Average Change in Revenue: $ ' + str(rev_avg))
+print("Financial Analysis")
+print("---------------------------")
+print('Average Revenue: $ ' + str(rev_avg))
 print("Total Months: " + str(total_months))
 print("Total Revenue: $ " + str(tot_revenue))
-print(biggest_incr)
-print(biggest_decr)
+print("Greatest Increase in Profits: $" + str(biggest_incr))
+print("Greatest Decrease in Profits: $"+ (biggest_decr))
