@@ -33,9 +33,10 @@ with open(csvpath, newline='') as csvfile:
         else:
             candidates.append(candidate)
             vote_count.append(1)
-percent_list = []
+
 
 #Create list of percentages for each candidate 
+percent_list = []
 for count in range(len(candidates)):
     vote_percent = vote_count[count]/number_votes*100
     percent_list.append(vote_percent)
@@ -44,11 +45,13 @@ for count in range(len(candidates)):
     total_votes = sum(vote_count)
     winner = max(vote_count)
 
-# test print
-print(total_votes)
-print(vote_count)
-print(candidates)
-print(winner)
-
+# print
+print("ELECTION RESULTS:")
+print("----------------------------")
+print("TOTAL VOTES: " + str(total_votes))
+print("----------------------------")
 for count in range(len(candidates)):
-    print(f"{candidates[count]}: {percent_list[count]}% ({vote_count[count]})")
+    print(f"{candidates[count]}: {round(percent_list[count])}% ({vote_count[count]})")
+print("----------------------------")
+print("WINNER: " + str(winner))
+print("----------------------------")
