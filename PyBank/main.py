@@ -1,5 +1,5 @@
 # import os & cv file
-import numpy as nb
+import decimal
 import os
 import csv
 csvpath = os.path.join('budget_data.csv')
@@ -30,15 +30,16 @@ with open(csvpath, newline='') as csvfile:
         revenue_list.append(row[1])
 
 #Calulate average change 
-rev_change = int(row[1]) - prev_revenue
-prev_change = int(row[1]) - prev_revenue
-prev_revenue = int(row[1])
-revenue_change_list = revenue_change_list + [rev_change]
-month_of_change = month_of_change + [row[0]]
+#rev_change = int(row[1]) - prev_revenue
+#prev_change = int(row[1]) - prev_revenue
+#prev_revenue = int(row[1])
+#revenue_change_list = revenue_change_list + [rev_change]
+#month_of_change = month_of_change + [row[0]]
+
+rev_avg = float(round(tot_revenue/total_months,2))
 
 # The greatest decrease in losses (date and amount) over the entire period
-
-#biggest_decr = nb.min(int(row[1])) 
+ 
 biggest_decr = min(revenue_list) 
 
 #The greatest increase in profits (date and amount) over the entire period
@@ -46,7 +47,7 @@ biggest_decr = min(revenue_list)
 biggest_incr = max(revenue_list)
       
 #print(rev_change_list)
-rev_avg = sum(revenue_change_list)/len(revenue_change_list)
+#rev_avg = sum(revenue_change_list)/len(revenue_change_list)
 
 
 print('Average Change in Revenue: $ ' + str(rev_avg))
