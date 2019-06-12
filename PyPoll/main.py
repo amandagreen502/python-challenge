@@ -28,11 +28,27 @@ with open(csvpath, newline='') as csvfile:
         if candidate in candidates:
             candidate_index = candidates.index(candidate)
             vote_count[candidate_index] = vote_count[candidate_index] + 1
+
 #when no more votes leff to count per canditate add to else create new spot in list for candidate
         else:
             candidates.append(candidate)
             vote_count.append(1)
+percent_list = []
+
+#Create list of percentages for each candidate 
+for count in range(len(candidates)):
+    vote_percent = vote_count[count]/number_votes*100
+    percent_list.append(vote_percent)
+    
+ #variables for summary   
+    total_votes = sum(vote_count)
+    winner = max(vote_count)
 
 # test print
+print(total_votes)
 print(vote_count)
 print(candidates)
+print(winner)
+
+for count in range(len(candidates)):
+    print(f"{candidates[count]}: {percent_list[count]}% ({vote_count[count]})")
